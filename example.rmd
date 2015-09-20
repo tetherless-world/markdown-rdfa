@@ -1,0 +1,7 @@
+(vocab http://schema.org/)
+(prefix ov: htttp://open.vocab.org/terms/)
+(about #manu)(a Person)
+My name is (name)[Manu Sporny] and you can give me a ring via (telephone)[1-800-555-0199].
+(url)[my homepage](http://manu.sporny.org/),
+!(image)[](http://manu.sporny.org/images/manu.png)
+My favorite animal is the (ov:preferredAnimal)[Liger].
