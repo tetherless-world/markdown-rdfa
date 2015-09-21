@@ -28,3 +28,21 @@ My favorite animal is the <span property="ov:preferredAnimal">Liger</span>.
 ```
 
 Note that it is possible to generate invalid RDFa simply by including literals where there should be URIs or CURIEs, improperly formatting a prefix element, or not declaring a prefix before using it. Today, this is on the honor system, partly because markdown can be embedded in a surrounding HTML that would address some of these issues by declaring prefixes, setting vocabularies, etc. 
+
+# Installation
+
+To install via pip, use the following command:
+
+```
+pip install git+git://github.com/tetherless-world/markdown-rdfa.git#egg=markdown-rdfa
+```
+
+# Using the extension
+
+There are detailed instructions at the python markdown site, but to run markdown-rdfa on a document from the command line, simply try this:
+
+```
+python -m markdown -x rdfa example.rmd
+```
+
+example.rmd is an example markdown-rdfa document.
