@@ -17,6 +17,7 @@ See LICENSE.md for details.
 import markdown
 import re
 from markdown.inlinepatterns import *
+from markdown.treeprocessors import Treeprocessor
 
 __version__ = "0.1"
 
@@ -32,6 +33,7 @@ class RDFaExtension(markdown.Extension):
         md.inlinePatterns.add('rdfa_property', RDFaPropertyPattern( md), "<link")
         md.inlinePatterns.add('rdfa_link', RDFaLinkPattern(md), "<rdfa_property")
         md.inlinePatterns.add('rdfa_img', RDFaImagePattern(md), "<rdfa_link")
+        md.treeprocessors.add('rdfa_block_attributes', RDFaTreeProcessor(md), '_end')
 
 class RDFaLinkPattern(LinkPattern):
 
@@ -61,6 +63,20 @@ class RDFaLinkPattern(LinkPattern):
 
         return el
 
+class RDFaTreeProcessor(Treeprocessor):
+
+    pattern = re.compile(r"""(\(\s*((about\s+(?P<about>[^)]+))|(a\s+(?P<typeof>[^)]+))|(prefix\s+(?P<prefix>[^)]+))|(vocab\s+(?P<vocab>[^)]+)))\s*\))+""")
+    
+    def run(self, root):
+        if root.text is not None:
+            for m in self.pattern.finditer(root.text):
+                for key, value in m.groupdict().items():
+                    if value is not None:
+                        root.set(key, value)
+            root.text = self.pattern.sub('', root.text).strip()
+        for child in root:
+            self.run(child)
+    
 class RDFaImagePattern(RDFaLinkPattern):
 
     pattern = r"""!\(\s*(?P<property>[^)]+)\s*\)\s*\[(?P<title>[^\]]*)\]\s*\(\s*(?P<src>[^)]+)\s*\)"""
@@ -68,7 +84,6 @@ class RDFaImagePattern(RDFaLinkPattern):
     def handleMatch(self, m):
         """ Return a link element from the given match. """
         d = m.groupdict()
-        print d
         el = markdown.util.etree.Element("img")
         el.set("property",d['property'])
         if 'title' in d and d['title'] is not None:
