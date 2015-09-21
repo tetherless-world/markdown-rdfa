@@ -65,7 +65,7 @@ class RDFaLinkPattern(LinkPattern):
 
 class RDFaTreeProcessor(Treeprocessor):
 
-    pattern = re.compile(r"""(\(\s*((about\s+(?P<about>[^)]+))|(a\s+(?P<typeof>[^)]+))|(prefix\s+(?P<prefix>[^)]+))|(vocab\s+(?P<vocab>[^)]+)))\s*\))+""")
+    pattern = re.compile(r"""(\(\s*((about\s+(?P<resource>[^)]+))|(a\s+(?P<typeof>[^)]+))|(prefix\s+(?P<prefix>[^)]+))|(vocab\s+(?P<vocab>[^)]+)))\s*\))+""")
     
     def run(self, root):
         if root.text is not None:
