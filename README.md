@@ -26,3 +26,5 @@ and you can give me a ring via
 My favorite animal is the <span property="ov:preferredAnimal">Liger</span>.
 </p>
 ```
+
+Note that it is possible to generate invalid RDFa simply by including literals where there should be URIs or CURIEs, improperly formatting a prefix element, or not declaring a prefix before using it. Today, this is on the honor system, partly because markdown can be embedded in a surrounding HTML that would address some of these issues by declaring prefixes, setting vocabularies, etc. 
