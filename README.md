@@ -1,5 +1,5 @@
 # RDFa Lite for Markdown
-A Python Markdown extension that lets authors embed RDFa Lite in markdown documents rendered to HTML. RDFa Lite is a simple way to add facts about things that you talk about on your web pages.
+A [Python Markdown](http://pythonhosted.org/Markdown/) extension that lets authors embed RDFa Lite in [markdown documents](http://daringfireball.net/projects/markdown/) rendered to HTML. RDFa Lite is a simple way to add facts about things that you talk about on your web pages.
 
 Here's a simple (but complete) example of the sorts of RDFa annotations you can use in markdown-rdfa:
 
