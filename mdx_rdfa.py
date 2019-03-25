@@ -70,7 +70,7 @@ class RDFaTreeProcessor(Treeprocessor):
     def run(self, root):
         if root.text is not None:
             for m in self.pattern.finditer(root.text):
-                for key, value in m.groupdict().items():
+                for key, value in list(m.groupdict().items()):
                     if value is not None:
                         root.set(key, value)
             root.text = self.pattern.sub('', root.text).strip()
